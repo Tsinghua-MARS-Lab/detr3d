@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="en">
+
+<!-- === Header Starts === -->
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <title>FUTR3D</title>
+
+    <link href="./assets/bootstrap.min.css" rel="stylesheet">
+    <link href="./assets/font.css" rel="stylesheet" type="text/css">
+    <link href="./assets/style.css" rel="stylesheet" type="text/css">
+    <script src="./assets/jquery.min.js"></script>
+    <script type="text/javascript" src="assets/corpus.js"></script>
+
+</head>
+<!-- === Header Ends === -->
+
+<script>
+    var lang_flag = 1;
+</script>
+
+<body>
+
+<!-- === Home Section Starts === -->
+<div class="section">
+    <!-- === Title Starts === -->
+
+    <!-- <div class="logo" style="padding-left: 120pt" align="top">
+        <a href="https://github.com/metadriverse/metadrive" target="_blank">
+            <img style=" width: 450pt;" src="images/metadrive.png">
+        </a>
+    </div> -->
+
+    <div class="header">
+        <div style="" class="title" id="lang">
+            DETR3D: 3D Object Detection from Multi-view Images via 3D-to-2D Queries
+        </div>
+    </div>
+    <!-- === Title Ends === -->
+
+    <div class="author" style="margin-top: -30pt">
+        <a href="https://people.csail.mit.edu/yuewang" target="_blank">Yue Wang</a><sup>1</sup>,&nbsp;
+        <a href="https://scholar.google.com.br/citations?user=UH9tP6QAAAAJ&hl=en" target="_blank">Vitor Guizilini</a><sup>2</sup>,&nbsp;
+        <a href="https://tianyuanzhang.com/" target="_blank">Tianyuan Zhang</a><sup>3</sup>,&nbsp;
+        <a href="https://scholar.google.com.hk/citations?hl=en&user=nUyTDosAAAAJ">Yilun Wang</a><sup>4</sup>,&nbsp;
+        <a href="https://hangzhaomit.github.io/">Hang Zhao</a><sup>5</sup>&nbsp;
+        <a href="https://people.csail.mit.edu/jsolomon/">Justin Solomon</a><sup>1</sup>&nbsp;
+    </div>
+
+    <div class="institution">
+        <div><sup>1</sup>MIT,
+            <sup>2</sup>Toyota Research Institute,
+            <sup>3</sup>CMU,
+        </div>
+        <div>
+            <sup>4</sup>Li Auto,
+            <sup>5</sup>Tsinghua University
+        </div>
+    </div>
+
+    <table border="0" align="center">
+        <tr>
+            <td align="center" style="padding: 0pt 0 15pt 0">
+                <a class="bar" href="https://github.com/WangYueFt/detr3d"><b>Webpage</b></a> |
+                <a class="bar" href="#"><b>Code</b></a> |
+                <a class="bar" href="https://arxiv.org/abs/2110.06922"><b>Paper</b></a>
+            </td>
+        </tr>
+    </table>
+    
+    <!--<div align="center">
+        <table width="100%" style="margin: 0pt 0pt; text-align: center;">
+            <tr>
+                <td>
+                    <video style="display:block; width:100%; height:auto; "
+                           autoplay="autoplay" muted loop="loop" controls playsinline>
+                        <source src="https://raw.githubusercontent.com/decisionforce/archive/master/MetaDrive/metadrive_teaser.mp4"
+                                type="video/mp4"/>
+                    </video>
+                </td>
+            </tr>
+        </table>
+    </div> -->
+    <p>
+        A multi-camera 3D object detection framework that doesn't require dense depth prediction and post-processing.
+    </p>
+
+</div>
+<!-- === Home Section Ends === -->
+
+
+
+
+<div class="section">
+    <div class="title" id="lang">Abstract</div>
+    <div class="logo" style="" align="center">
+        <img style="width: 700pt;" src="images/teaser.png">
+    </div>
+    <p>
+        We introduce a framework for multi-camera 3D object detection. In contrast to existing works, which estimate 3D bounding boxes directly from monocular images or use depth prediction networks to generate input for 3D object detection from 2D information, our method manipulates predictions directly in 3D space. Our architecture extracts 2D features from multiple camera images and then uses a sparse set of 3D object queries to index into these 2D features, linking 3D positions to multi-view images using camera transformation matrices. Finally, our model makes a bounding box prediction per object query, using a set-to-set loss to measure the discrepancy between the ground-truth and the prediction. This top-down approach outperforms its bottom-up counterpart in which object bounding box prediction follows per-pixel depth estimation, since it does not suffer from the compounding error introduced by a depth prediction model. Moreover, our method does not require post-processing such as non-maximum suppression, dramatically improving inference speed. We achieve state-of-the-art performance on the nuScenes autonomous driving benchmark.
+    </p>
+    <!-- <ul>
+        <li>
+            <b>Compositional</b>: It supports generating infinite scenes with various road maps and traffic settings for the
+            research of generalizable RL.
+        </li>
+        <li>
+            <b>Lightweight</b>: It is easy to install and run. It can run up to 300 FPS on a standard PC.
+        </li>
+        <li>
+            <b>Realistic</b>: Accurate physics simulation and multiple sensory input including Lidar, RGB images, top-down
+            semantic map and first-person view images. The real traffic data replay is also supported.
+        </li>
+    </ul> -->
+ 
+</div>
+
+<div class="section">
+    <div class="title" id="lang">Method</div>
+    <div class="logo" style="" align="center">
+        <img style="width: 700pt;" src="images/DETR3D.png">
+    </div>
+    <p>
+        <b> Unified sensor fusion framework.</b> DETR3D extracts image features with a 2D backbone, followed by a set of queries defined in 3D space to correlate 2D observations and 3D predictions. Finally, a set-to-set loss is used to remove the necessity of post-processing such as non-maximum suppresion. 
+    </p>
+    <ul>
+        <li><b> 3D aware</b>We incorporate 3D information into intermediate computations within our architecture, rather than performing purely 2D computations in the image plane.
+        </li>
+        <li><b> Sparse</b>We do not estimate dense 3D scene geometry, avoiding associated reconstruction errors.</li>  
+        <li><b> Post-processing free</b>We avoid post-processing steps such as NMS.</li> 
+    </ul>
+    
+</div>
+
+<div class="section">
+    <div class="title" id="lang">Related Projects on VCAD (Vision-Centric Autonomous Driving)</div>
+    <div class="col text-center">
+
+    <table width="100%" style="margin: 0pt 0pt; text-align: center;">
+    <tr>
+      <td>
+      BEV Mapping<br>
+      <a href="https://tsinghua-mars-lab.github.io/HDMapNet/" class="d-inline-block p-3"><img height="100"
+          src="https://tsinghua-mars-lab.github.io/HDMapNet/images/scene0_car_small.gif" style="border:1px solid" data-nothumb><br>HDMapNet</a>
+      </td>
+      <td>
+      BEV Detection<br>
+        <a href="https://github.com/WangYueFt/detr3d" class="d-inline-block p-3"><img height="100"
+          src="images/MUTR3D_paper_thumbnail.png" style="border:1px solid"
+          data-nothumb><br>DETR3D</a>
+      </td>
+      <td>
+        BEV Fusion<br>
+      <a href="https://tsinghua-mars-lab.github.io/FUTR3D/" class="d-inline-block p-3"><img height="100"
+          src="images/MUTR3D_paper_thumbnail.png" style="border:1px solid"
+          data-nothumb><br>FUTR3D</a>
+      </td>
+
+    <td>
+        BEV Tracking<br>
+      <a href="https://tsinghua-mars-lab.github.io/MUTR3D/" class="d-inline-block p-3"><img height="100"
+          src="images/MUTR3D_paper_thumbnail.png" style="border:1px solid"
+          data-nothumb><br>MUTR3D</a>
+      </td>
+
+    </tr>
+    </table>
+    </div>
+
+    
+</div>
+
+<!-- === Reference Section Starts === -->
+<div class="section">
+    <div class="bibtex">
+       <div class="title" id="lang">Reference</div>
+    </div>
+<p>If you find our work useful in your research, please cite our paper:</p>
+    <pre>
+    @inproceedings{
+        detr3d,
+        title={DETR3D: 3D Object Detection from Multi-view Images via 3D-to-2D Queries},
+        author={Wang, Yue and Guizilini, Vitor and Zhang, Tianyuan and Wang, Yilun and Zhao, Hang and and Solomon, Justin M.},
+        booktitle={The Conference on Robot Learning ({CoRL})},
+        year={2021}
+        }
+</pre>
+    <!-- Adjust the frame size based on the demo (Every project differs). -->
+</div>
+
+</body>
+</html>
