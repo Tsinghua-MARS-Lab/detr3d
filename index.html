@@ -90,6 +90,10 @@
         A multi-camera 3D object detection framework that does NOT require dense depth prediction or post-processing.
     </p>
 
+    <div class="logo" style="" align="center">
+        <img style="width: 700pt;" src="images/detr3d_teaser.png">
+    </div>
+
 </div>
 <!-- === Home Section Ends === -->
 
@@ -98,9 +102,9 @@
 
 <div class="section">
     <div class="title" id="lang">Abstract</div>
-    <div class="logo" style="" align="center">
-        <img style="width: 700pt;" src="images/DETR3D.png">
-    </div>
+<!--     <div class="logo" style="" align="center">
+        <img style="width: 700pt;" src="images/DETR3D_teaser.png">
+    </div> -->
     <p>
         We introduce a framework for multi-camera 3D object detection. In contrast to existing works, which estimate 3D bounding boxes directly from monocular images or use depth prediction networks to generate input for 3D object detection from 2D information, our method manipulates predictions directly in 3D space. Our architecture extracts 2D features from multiple camera images and then uses a sparse set of 3D object queries to index into these 2D features, linking 3D positions to multi-view images using camera transformation matrices. Finally, our model makes a bounding box prediction per object query, using a set-to-set loss to measure the discrepancy between the ground-truth and the prediction. This top-down approach outperforms its bottom-up counterpart in which object bounding box prediction follows per-pixel depth estimation, since it does not suffer from the compounding error introduced by a depth prediction model. Moreover, our method does not require post-processing such as non-maximum suppression, dramatically improving inference speed. We achieve state-of-the-art performance on the nuScenes autonomous driving benchmark.
     </p>
@@ -122,9 +126,9 @@
 
 <div class="section">
     <div class="title" id="lang">Method</div>
-    <!-- <div class="logo" style="" align="center">
-        <img style="width: 700pt;" src="images/DETR3D.png">
-    </div> -->
+    <div class="logo" style="" align="center">
+        <img style="width: 700pt;" src="images/detr3d_model.png">
+    </div>
     <p>
         <b> A multi-camera 3D object detection framework.</b> DETR3D extracts image features with a 2D backbone, followed by a set of queries defined in 3D space to correlate 2D observations and 3D predictions. Finally, a set-to-set loss is used to remove the necessity of post-processing such as non-maximum suppresion. 
     </p>
